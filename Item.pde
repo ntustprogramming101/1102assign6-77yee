@@ -4,7 +4,9 @@ class Item {
 	float w = SOIL_SIZE;
 	float h = SOIL_SIZE;
 
-	void display(){}
+  PImage img;
+
+	void display(){image(img, x, y);}
 	void checkCollision(Player player){}
 
 	Item(float x, float y){
