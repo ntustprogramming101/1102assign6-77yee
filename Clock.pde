@@ -3,7 +3,6 @@ class Clock extends Item{
 Clock(float x, float y){
       super(x, y);
     }
-
 			// Display Clock
 void display(){
     if(isAlive) {image(clock, x, y);  
