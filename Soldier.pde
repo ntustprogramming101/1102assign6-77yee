@@ -12,5 +12,9 @@ class Soldier extends Enemy{
 
 	Soldier(float x, float y){
 		super(x, y);
+<<<<<<< HEAD
 	}
 }
+=======
+	}}
+>>>>>>> 47dfe7ba5fff7145bb70632ee10882037e79b2dc
