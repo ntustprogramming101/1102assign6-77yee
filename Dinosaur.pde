@@ -1,43 +1,36 @@
 class Dinosaur extends Enemy{
 	// Requirement #4: Complete Dinosaur Class
 	final float TRIGGERED_SPEED_MULTIPLIER = 5;
-
-	// HINT: Player Detection in update()
- float speed = 1f;
- float w = SOIL_SIZE;
- float h = SOIL_SIZE;
- int direction;
- Dinosaur(float x, float y){
-      super(x, y);
-    }
-	/*
-	If player is on the same row with me AND (it's on my right side when I'm going right OR on my left side when I'm going left){
-		currentSpeed *= TRIGGERED_SPEED_MULTIPLIER(?)
-	}*/
-void display() {
-  image(dinosaur, x, y);
+  float speed = 1f;
+  
+  Dinosaur(float x, float y){
+    super(x, y);
+    
   }
-
-void update() {
-    x += speed;
-    if (x+w>= width) {
-      speed=-1f;
-      pushMatrix();
-      translate(x+w, y);
-      scale(-1, 1);
-      popMatrix();
+  
+  void display(){
+    pushMatrix();
+    translate(x,y);
+    if(speed > 0){
+      scale(1,1);
+      image(dinosaur, 0, 0, w, h);
+    } else{
+      scale(-1,1);
+      image(dinosaur, -w, 0, w, h);
     }
-    if (x<=0) {
-      speed=1f;
+    popMatrix();
+  }
+  
+  void update(){
+    float currentSpeed = speed;
+    
+    if(player.y == y && ((speed > 0 && player.x > x) || (speed < 0 && player.x < x))){
+        currentSpeed = speed * TRIGGERED_SPEED_MULTIPLIER;
     }
-    if (speed==1f) {
-      if (player.y+player.h>y&&player.y<y+h&&player.x> x+w) {
-        speed=5;
-      }
-      }else  if (speed==-1f) {
-        if (player.y+player.h>y&&player.y<y+h&&player.x+player.w< x) {
-          speed=-5;
-        }
-      }
+    
+    x += currentSpeed;
+    
+    if(x > width-w ||x < 0){
+      speed *= -1;
     }
-}
+  }
