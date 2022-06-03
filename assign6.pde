@@ -4,6 +4,7 @@ PImage bg, life, cabbage, soilEmpty, clock, caution, sweethome;
 PImage soldier, robot, dinosaur;
 PImage[][] soilImages, stoneImages;
 PFont font;
+//test
 
 final int GAME_START = 0, GAME_RUN = 1, GAME_OVER = 2, GAME_WIN = 3;
 int gameState = 0;
@@ -150,8 +151,8 @@ void initGame(){
 
 		switch(i){
 			case 0: case 1: enemies[i] = new Soldier(newX, newY); break;
-			case 2: case 3: enemies[i] = new Dinosaur(newX, newY); break;// Requirement 4: Create new Dinosaur in row 9 - 16
-			case 4: case 5: enemies[i] = new Robot(newX, newY); break;// Requirement 5: Create new Robot in row 17 - 25
+			case 2: case 3: enemies[i] = new Dinosaur(newX, newY); break; // Requirement 4: Create new Dinosaur in row 9 - 16
+			case 4: case 5: enemies[i] = new Robot(newX, newY); break; // Requirement 5: Create new Robot in row 17 - 25
 		}
 
 
@@ -164,16 +165,17 @@ void initGame(){
 	for(int i = 0; i < items.length; i++){
 		float newX = SOIL_SIZE * floor(random(SOIL_COL_COUNT));
 		float newY = SOIL_SIZE * ( i * 4 + floor(random(4)));
+  
+    switch(floor(random(2))){
+      case 0 :items[i] = new Cabbage(newX, newY); break;
+      case 1 :items[i] = new Clock(newX, newY); break;
+    }
+    
 		// Requirement #3:
 		// 	- Randomly decide if a cabbage or a clock should appear in a random soil every 4 rows (6 items in total)
 		// 	- Create and store cabbages/clocks in the same items array
 		// 	- You can use the above newX/newY to set their position in constructor
-    float clockOrCabbage = random(1);
-    if(clockOrCabbage<=0.5){
-      items[i] = new Cabbage(newX,newY);
-    }else{
-      items[i] = new Clock(newX,newY);
-    }
+
 	}
 }
 
@@ -241,9 +243,9 @@ void draw() {
 
 		// Items
 		// Requirement #3: Display and check collision with player for each item in Item[] items
-    for(int i=0;i<6;i++){
-      items[i].checkCollision(player);
+    for(int i = 0; i < items.length; i++){
       items[i].display();
+      items[i].checkCollision(player);
     }
 
 		// Player
