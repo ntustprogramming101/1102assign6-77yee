@@ -47,8 +47,7 @@ void display() {
     if (player.y+player.h>y-160&&player.y<y+h+160) {
       if (speed==2f) {
         if (player.x> x+w) {
-          speed=0;
-        }
+          speed=0;  }
       } 
     }
   }
