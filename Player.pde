@@ -26,7 +26,6 @@ class Player {
 				moveTimer = moveDuration;
 
 			}else{
-
 				if(leftState){
 
 					groundhogDisplay = groundhogLeft;
