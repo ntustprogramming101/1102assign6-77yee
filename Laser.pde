@@ -46,5 +46,5 @@ class Laser {
 
 	Laser(){
 		isAlive = false;
-	}
+	
 }
