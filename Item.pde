@@ -13,5 +13,4 @@ class Item {
 		isAlive = true;
 		this.x = x;
 		this.y = y;
-	}
-}
+	}}
