@@ -152,4 +152,4 @@ class Player {
 		row = (int) y / SOIL_SIZE;
 		moveTimer = 0;
 	}
-
+}
