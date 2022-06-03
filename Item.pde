@@ -1,4 +1,4 @@
-lass Item {
+class Item {
 	boolean isAlive;
 	float x, y;
 	float w = SOIL_SIZE;
