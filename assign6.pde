@@ -4,6 +4,7 @@ PImage bg, life, cabbage, soilEmpty, clock, caution, sweethome;
 PImage soldier, robot, dinosaur;
 PImage[][] soilImages, stoneImages;
 PFont font;
+//test
 
 final int GAME_START = 0, GAME_RUN = 1, GAME_OVER = 2, GAME_WIN = 3;
 int gameState = 0;
@@ -23,9 +24,6 @@ final int START_BUTTON_Y = 360;
 Player player;
 Item[] items;
 Enemy[] enemies;
-Cabbage[] cabbages;
-Clock[] clocks;
-Laser laser1;Laser laser2;
 
 final int GAME_INIT_TIMER = 7200;
 int gameTimer = GAME_INIT_TIMER;
@@ -35,7 +33,6 @@ final float CLOCK_BONUS_SECONDS = 15f;
 boolean leftState = false;
 boolean rightState = false;
 boolean downState = false;
-float itemChance = 0.5;
 
 void setup() {
 	size(640, 480, P2D);
@@ -153,28 +150,34 @@ void initGame(){
 		float newY = SOIL_SIZE * ( i * 4 + floor(random(4)));
 
 		switch(i){
-			case 0: case 1: enemies[i] = new Soldier(newX, newY);
-break;
-			case 2: case 3: enemies[i]=new Dinosaur(newX, newY);
-break;// Requirement 4: Create new Dinosaur in row 9 - 16
-			case 4: case 5: enemies[i]=new Robot(newX, newY);
-break;// Requirement 5: Create new Robot in row 17 - 25
+			case 0: case 1: enemies[i] = new Soldier(newX, newY); break;
+			case 2: case 3: enemies[i] = new Dinosaur(newX, newY); break; // Requirement 4: Create new Dinosaur in row 9 - 16
+			case 4: case 5: enemies[i] = new Robot(newX, newY); break; // Requirement 5: Create new Robot in row 17 - 25
 		}
+
+
 	}
 
 	// Initialize items and their position
 
 	items = new Item[6];
-  for (int i = 0; i < items.length; i++) {
-    float newX = SOIL_SIZE * floor(random(SOIL_COL_COUNT));
-    float newY = SOIL_SIZE * ( i * 4 + floor(random(4)));
-    items[i]= (random(1)>itemChance)?new Cabbage(newX, newY):new Clock(newX, newY);
+
+	for(int i = 0; i < items.length; i++){
+		float newX = SOIL_SIZE * floor(random(SOIL_COL_COUNT));
+		float newY = SOIL_SIZE * ( i * 4 + floor(random(4)));
+  
+    switch(floor(random(2))){
+      case 0 :items[i] = new Cabbage(newX, newY); break;
+      case 1 :items[i] = new Clock(newX, newY); break;
+    }
+    
 		// Requirement #3:
 		// 	- Randomly decide if a cabbage or a clock should appear in a random soil every 4 rows (6 items in total)
 		// 	- Create and store cabbages/clocks in the same items array
-		// 	- You can use the above newX/newY to set their position in constructor    
-    }
-  }
+		// 	- You can use the above newX/newY to set their position in constructor
+
+	}
+}
 
 void draw() {
 
@@ -189,9 +192,13 @@ void draw() {
 				gameState = GAME_RUN;
 				mousePressed = false;
 			}
+
 		}else{
+
 			image(startNormal, START_BUTTON_X, START_BUTTON_Y);
+
 		}
+
 		break;
 
 		case GAME_RUN: // In-Game
@@ -235,14 +242,12 @@ void draw() {
 		image(sweethome, 0, SOIL_ROW_COUNT * SOIL_SIZE);
 
 		// Items
-  for(int n =0; n<6;n++){
 		// Requirement #3: Display and check collision with player for each item in Item[] items
-    for(Item i : items){
-      if(i == null) continue;
-      i.display();
-      i.checkCollision(player);      
+    for(int i = 0; i < items.length; i++){
+      items[i].display();
+      items[i].checkCollision(player);
     }
-  } 
+
 		// Player
 
 		player.update();
@@ -347,9 +352,9 @@ boolean isHit(float ax, float ay, float aw, float ah, float bx, float by, float 
 
 boolean isMouseHit(float bx, float by, float bw, float bh){
 	return	mouseX > bx && 
-		      mouseX < bx + bw && 
-		      mouseY > by && 
-		      mouseY < by + bh;
+		    mouseX < bx + bw && 
+		    mouseY > by && 
+		    mouseY < by + bh;
 }
 
 color getTimeTextColor(int frames){
