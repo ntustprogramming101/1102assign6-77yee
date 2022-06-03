@@ -20,7 +20,6 @@ class Soil {
 				int stoneSize = (int) (min(5, ceil(((float)health - 15 * 2) / (15 / 5))) - 1);
 				image(stoneImages[1][stoneSize], col * SOIL_SIZE, row * SOIL_SIZE);
 			}
-
 		}else{
 			image(soilEmpty, col * SOIL_SIZE, row * SOIL_SIZE);
 		}
