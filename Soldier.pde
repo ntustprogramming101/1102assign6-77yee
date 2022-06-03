@@ -13,5 +13,4 @@ class Soldier extends Enemy{
 
 	Soldier(float x, float y){
 		super(x, y);
-	}
-}
+	}}
