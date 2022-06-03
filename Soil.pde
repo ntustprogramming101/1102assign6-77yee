@@ -31,4 +31,5 @@ class Soil {
 		this.col = col;
 		this.row = row;
 	}
+
 }
