@@ -1,19 +1,41 @@
 class Clock extends Item{
 	// Requirement #2: Complete Clock Class
-Clock(float x, float y){
-      super(x, y);
-    }
-			// Display Clock
-void display(){
-    if(isAlive) {image(clock, x, y);  
+  
+  Clock(float x, float y){
+    super(x, y);
   }
-}
+  
+  void display(){
+    if(isAlive){
+      image(clock, x, y);
+    }
+<<<<<<< HEAD
+=======
+  }
+  
+  void checkCollision(Player player){
+    if(isAlive && isHit(x, y, w, h, player.x, player.y, player.w, player.h)){
+      addTime(CLOCK_BONUS_SECONDS);
+      isAlive = false;
+    }
+  }
+	/*
+	Code for Reference:
+
+		for(int i = 0; i < clockX.length; i++){
+
+>>>>>>> 47dfe7ba5fff7145bb70632ee10882037e79b2dc
+			// Display Clock
+			image(clock, clockX[i], clockY[i]);
 
 			// Check collision with player
-  void checkCollision(Player player){
-      if(player.health < player.PLAYER_MAX_HEALTH && isHit(x, y, w, h, player.x, player.y, player.w, player.h) && isAlive){
-      isAlive=false;
-      addTime(15);
-    }
-  }
-}  
+		    if(isHit(clockX[i], clockY[i], SOIL_SIZE, SOIL_SIZE, player.x, player.y, player.w, player.h)){
+
+				addTime(CLOCK_BONUS_SECONDS);
+				clockX[i] = clockY[i] = -1000; // Now that they're objects, toggle isAlive instead of throwing them away from screen
+
+			}
+
+		}
+	*/
+}
