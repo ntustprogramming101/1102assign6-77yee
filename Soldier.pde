@@ -1,5 +1,4 @@
 class Soldier extends Enemy{
-
 	float speed = 2f;
 
 	void display(){
