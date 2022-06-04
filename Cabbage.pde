@@ -39,10 +39,8 @@ class Cabbage extends Item{
 
 		}
 
-<<<<<<< HEAD
     }
   }}
 =======
 	*/
 }
->>>>>>> 47dfe7ba5fff7145bb70632ee10882037e79b2dc
