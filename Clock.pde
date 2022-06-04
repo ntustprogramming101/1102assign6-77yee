@@ -9,8 +9,7 @@ class Clock extends Item{
     if(isAlive){
       image(clock, x, y);
     }
-<<<<<<< HEAD
-=======
+ HEAD
   }
   
   void checkCollision(Player player){
