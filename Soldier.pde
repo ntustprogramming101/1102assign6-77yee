@@ -1,20 +1,16 @@
 class Soldier extends Enemy{
-	float speed = 2f;
+  
 
-	void display(){
-		image(soldier, x, y);
-	}
+  Soldier(float x, float y){
+      super(x, y);
+    }
 
-	void update(){
-		x += speed;
-		if(x >= width) x = -w;
-	}
+  void display(){
+    image(soldier, x, y);
+  }
 
-	Soldier(float x, float y){
-		super(x, y);
-<<<<<<< HEAD
-	}
+  void update(){
+    x += speed;
+    if(x >= width) x = -w;
+  }  
 }
-=======
-	}}
->>>>>>> 47dfe7ba5fff7145bb70632ee10882037e79b2dc
